@@ -8,8 +8,9 @@
     "start": "next start"
   },
   "dependencies": {
-    "next": "9.4.4",
+    "next": "^10.0.1",
     "react": "16.13.1",
-    "react-dom": "16.13.1"
+    "react-dom": "16.13.1",
+    "react-waypoint": "^9.0.3"
   }
 }
