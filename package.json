@@ -27,6 +27,7 @@
         "react-waypoint": "^9.0.3"
     },
     "devDependencies": {
+        "autoprefixer": "^10.0.2",
         "eslint": "^7.14.0",
         "eslint-config-prettier": "^6.15.0",
         "eslint-plugin-jsx-a11y": "^6.4.1",
