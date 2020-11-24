@@ -1,11 +1,29 @@
+import { useState } from 'react';
 import Image from 'next/image';
+import { Waypoint } from 'react-waypoint';
 
-const StoryBlock = ({text, image}) => {
+const StoryBlock = ({ text, image, id }) => {
+    const [displayImage, setDisplayImage] = useState(false)
+    const onEnter = () => {
+        if (image && image.url) {
+            setDisplayImage(true)
+        }
+    };
+    const onLeave = () => {
+        setDisplayImage(false)
+    }
     return (
-        <div style={{ height: '500px' }} >
-            {image && image.url && <Image src={`https:${image.url}`} width={375} height={812} />}
-            {text && <p>{text}</p>}
-        </div>
+        <>
+            <Waypoint onEnter={onEnter} onLeave={onLeave} key={id} />
+            <div className="h-screen flex content-start mb-px" >
+                {text && <p className="mb-auto ml-auto mr-auto p-10 z-10">{text}</p>}
+            </div>
+            {displayImage && (
+                <div className={`${displayImage ? 'fixed' : 'none'} top-0 bottom-0 left-0 right-0 z-0`}>
+                    <Image src={`https:${image.url}`} layout="fill" className="object-cover" />
+                </div>
+            )}
+        </>
     );
 };
 
