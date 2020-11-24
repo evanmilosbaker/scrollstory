@@ -1,68 +1,26 @@
 import Head from 'next/head';
 import StoryBlock from '../components/StoryBlock';
+import fetchContent from '../api/index';
 
-export default function Home({ storyBlocks }) {
-    console.log('these are the props in render', storyBlocks);
+export default function Home({storyBlocks}) {
     return (
-        <div className="container">
+        <div>
             <Head>
                 <title>scrollstory</title>
                 <link rel="icon" href="/favicon.ico" />
             </Head>
-
             <main>
-                <div className="mainContainer">
+                <div className="container mx-auto">
                     {storyBlocks.map((storyBlock) => (
-                        <StoryBlock {...storyBlock} />
+                        <StoryBlock {...storyBlock} key={storyBlock.id}/>
                     ))}
                 </div>
             </main>
-
-            <footer></footer>
         </div>
     );
 }
 
 export async function getStaticProps() {
-    return {
-        props: {
-            storyBlocks: [
-                {
-                    text: 'hi evan'
-                },
-                {
-                    text: 'hi evan 1',
-                    imgSrc: '/photos/1-1.jpg'
-                },
-                {
-                    text: 'hi evan'
-                },
-                {
-                    text: 'hi evan 1',
-                    imgSrc: '/photos/1-2.jpg'
-                },
-                {
-                    text: 'hi evan'
-                },
-                {
-                    text: 'hi evan 1',
-                    imgSrc: '/photos/1-3.jpg'
-                },
-                {
-                    text: 'hi evan'
-                },
-                {
-                    text: 'hi evan 1',
-                    imgSrc: '/photos/1-4.jpg'
-                },
-                {
-                    text: 'hi evan'
-                },
-                {
-                    text: 'hi evan 1',
-                    imgSrc: '/photos/1-5.jpg'
-                }
-            ]
-        }
-    };
+    const storyBlocks = await fetchContent();
+    return { props: { storyBlocks } };
 }
