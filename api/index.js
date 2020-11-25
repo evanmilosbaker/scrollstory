@@ -12,7 +12,7 @@ const formatContent = (content) => {
     const { blocks } = content.fields.scrollstoryBlocks;
     return blocks.map(block => ({
         ...block,
-        image: imageDictionary[block.imgSrc] || {}
+        images: block.imgSrcs ? block.imgSrcs.map(imgsrc => imageDictionary[imgsrc] || {}) : []
     }));
 }
 
